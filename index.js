@@ -246,6 +246,8 @@ class Prune {
     const params = {
       FunctionName: functionName
     };
+    
+    this.serverless.cli.log('Prune: Querying for a list of function versions');
 
     return this.makeLambdaRequest('listVersionsByFunction', params, r => r.Versions)
       .catch(e => {
