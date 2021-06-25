@@ -154,7 +154,11 @@ class Prune {
 
     const selectedFunctions = this.options.function ? [this.options.function] : this.serverless.service.getAllFunctions();
     const functionNames = selectedFunctions.map(key => {
-      this.serverless.cli.log(key, this.serverless.service.getFunction(key).name || `${this.serverless.service.name}-${key}`);
+      this.serverless.cli.log(key);
+      this.serverless.cli.log(this.serverless.service.getFunction(key).name);
+      this.serverless.cli.log(`${this.serverless.service.name}-${key}`);
+      this.serverless.cli.log(this.serverless.service.getFunction(key));
+      console.log(this.serverless.service.getFunction(key));
       return this.serverless.service.getFunction(key).name || `${this.serverless.service.name}-${key}`
     });
 
