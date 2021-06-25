@@ -153,7 +153,11 @@ class Prune {
   prune() {
 
     const selectedFunctions = this.options.function ? [this.options.function] : this.serverless.service.getAllFunctions();
-    const functionNames = selectedFunctions.map(key => this.serverless.service.getFunction(key).name || `${this.serverless.service.service}-${key}`);
+    const functionNames = selectedFunctions.map(key => {
+      console.log(this.serverless.service.service);
+      this.serverless.cli.log(this.serverless.service.getFunction(key).name || `${this.serverless.service.service}-${key}`);
+      return this.serverless.service.getFunction(key).name || `${this.serverless.service.service}-${key}`
+    });
 
     this.serverless.cli.log('Prune: Querying for deployed function versions');
 
